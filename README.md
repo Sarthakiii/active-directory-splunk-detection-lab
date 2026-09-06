@@ -1,13 +1,7 @@
 # active-directory-splunk-detection-lab
 Active Directory security monitoring lab using Splunk, Sysmon and Windows auditing to detect privileged access, account creation and failed logons.
 ````markdown
-# Active Directory Security Monitoring with Splunk
 
-![Splunk](https://img.shields.io/badge/SIEM-Splunk-000000?logo=splunk&logoColor=white)
-![Active Directory](https://img.shields.io/badge/Identity-Active%20Directory-0078D4?logo=microsoft&logoColor=white)
-![Windows](https://img.shields.io/badge/Endpoint-Windows-0078D4?logo=windows&logoColor=white)
-![Sysmon](https://img.shields.io/badge/Telemetry-Sysmon-5C2D91)
-![Status](https://img.shields.io/badge/Project-Completed-2EA44F)
 
 > A virtual Active Directory security lab that collects Windows and Sysmon events in Splunk to detect account creation, privilege changes, privileged logons and failed authentication attempts.
 
