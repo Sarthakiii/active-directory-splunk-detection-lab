@@ -37,11 +37,17 @@ The project covers the complete detection pipeline:
 
 ```mermaid
 flowchart LR
-    A["DC01<br/>Windows Server<br/>192.168.56.10"] -->|"Security Logs<br/>Universal Forwarder"| C["SPLUNK01<br/>Ubuntu Server<br/>192.168.56.30"]
-    B["WIN-CLIENT<br/>Windows 10<br/>192.168.56.20"] -->|"Security + Sysmon<br/>Universal Forwarder"| C
-    C --> D["Splunk Enterprise<br/>Index: ad_lab"]
-    D --> E["SPL Detection<br/>and Correlation"]
-````
+    A["DC01 - Windows Server - 192.168.56.10"]
+    B["WIN-CLIENT - Windows 10 - 192.168.56.20"]
+    C["SPLUNK01 - Ubuntu Server - 192.168.56.30"]
+    D["Splunk Enterprise - Index: ad_lab"]
+    E["SPL Detection and Correlation"]
+
+    A -->|"Security Logs via Universal Forwarder"| C
+    B -->|"Security and Sysmon Logs via Universal Forwarder"| C
+    C --> D
+    D --> E
+```
 
 | Machine      | Purpose           | Components                                        |
 | ------------ | ----------------- | ------------------------------------------------- |
