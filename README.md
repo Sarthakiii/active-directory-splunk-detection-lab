@@ -217,6 +217,21 @@ index=ad_lab EventCode=4625
 
 <img width="1911" height="937" alt="18 detection 4 failed login" src="https://github.com/user-attachments/assets/98ca07ac-681a-4ace-b00a-5a656dfa2c6d" />
 
+### Multiple Failed-Logon Threshold Detection
+
+Displaying individual Event ID `4625` records is useful for investigation, but a threshold helps identify repeated authentication failures that require attention.
+
+```spl
+index=ad_lab EventCode=4625
+| eval user=coalesce(TargetUserName, Account_Name)
+| bin _time span=5m
+| stats count values(IpAddress) as source_ip by _time user host
+| where count >= 5
+| sort - count
+```
+
+This search identifies accounts producing five or more failed authentication attempts within a five-minute window. The result may indicate password guessing, brute-force activity or a misconfigured service.
+
 
 Repeated failed-logon events may indicate:
 
@@ -228,9 +243,9 @@ Repeated failed-logon events may indicate:
 
 ---
 
-## 9. Active Directory Security Correlation
+## 9. Unified Active Directory Security Timeline
 
-Instead of investigating every Event ID separately, I created a single SPL query that categorizes important identity-security events.
+Instead of investigating every Event ID separately, I created a unified SPL search that categorizes important identity-security events and presents them as a single investigation timeline.
 
 ```spl
 index=ad_lab host=DC01
@@ -289,6 +304,15 @@ This makes the results easier for a SOC analyst to review and investigate.
 
 ---
 
+## Reusable Project Files
+
+- [Multiple failed-logon threshold detection](detections/failed-logon-threshold.spl)
+- [Splunk Universal Forwarder inputs example](configs/inputs.conf.example)
+
+These files are reusable examples. Paths, host roles and collection settings should be verified before using them in another environment.
+
+---
+
 ## Key Learning
 
 This project taught me that security detection is not limited to writing a Splunk query.
@@ -321,6 +345,3 @@ This repository is intended only for defensive cybersecurity learning and author
 **Sarthaki Shinde**
 
 Computer Engineering Student | Cybersecurity | SOC & Blue Team
-
-```
-```
