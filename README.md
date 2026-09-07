@@ -304,10 +304,6 @@ This makes the results easier for a SOC analyst to review and investigate.
 
 ---
 
-## Reusable Project Files
-
-- [Multiple failed-logon threshold detection](detections/failed-logon-threshold.spl)
-- [Splunk Universal Forwarder inputs example](configs/inputs.conf.example)
 
 These files are reusable examples. Paths, host roles and collection settings should be verified before using them in another environment.
 
